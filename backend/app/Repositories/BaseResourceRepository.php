@@ -118,4 +118,17 @@ class BaseResourceRepository implements BaseResourceRepositoryInterface
 
         return $resource->delete();
     }
+
+    /**
+     * Batch delete resources by ids.
+     *
+     * @param  array $ids
+     * @return bool
+     */
+    public function batchDeleteByIds(array $ids): bool
+    {
+        return $this->model
+            ->whereIn('id', $ids)
+            ->delete();
+    }
 }

@@ -27,4 +27,26 @@ class TaskService extends BaseResourceService
     {
         return $this->repository;
     }
+
+    /**
+     * Batch delete resources.
+     *
+     * @param  array $payload
+     * @return void
+     */
+    public function batchDelete(array $payload)
+    {
+        $this->repository()->batchDeleteByIds($payload['ids']);
+    }
+
+    /**
+     * Batch update status resources.
+     *
+     * @param  array $payload
+     * @return void
+     */
+    public function batchUpdateStatus(array $payload)
+    {
+        $this->repository()->batchUpdateStatusByIds($payload['ids'], $payload['status']);
+    }
 }

@@ -11,5 +11,10 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('tasks')->group(function () {
+        Route::delete('batch-delete', [TaskController::class, 'batchDelete']);
+        Route::put('batch-update-status', [TaskController::class, 'batchUpdateStatus']);
+    });
+
     Route::apiResource('tasks', TaskController::class);
 });

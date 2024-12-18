@@ -60,4 +60,12 @@ interface BaseResourceRepositoryInterface
      * @return bool
      */
     public function delete(int $id): bool;
+
+    /**
+     * Batch delete resources by ids.
+     *
+     * @param  array $ids
+     * @return bool
+     */
+    public function batchDeleteByIds(array $ids): bool;
 }
