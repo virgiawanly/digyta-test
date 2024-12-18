@@ -19,13 +19,13 @@ class UserRepository extends BaseResourceRepository implements UserRepositoryInt
     }
 
     /**
-     * Find user by email.
+     * Find user by username.
      *
-     * @param  string $email
+     * @param  string $username
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function findByEmail(string $email): ?Model
+    public function findByUsername(string $username): ?Model
     {
-        return $this->model->where('email', $email)->first();
+        return $this->model->where('username', $username)->first();
     }
 }

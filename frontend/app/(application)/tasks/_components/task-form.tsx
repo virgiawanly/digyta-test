@@ -53,7 +53,13 @@ const TaskForm = (props: TaskFormProps) => {
           <FormItem>
             <FormLabel>Judul Task</FormLabel>
             <FormControl>
-              <Input placeholder="Masukkan judul task" {...field} disabled={form.formState.isSubmitting} onKeyDown={(e) => e.key === 'Enter'} />
+              <Input
+                placeholder="Masukkan judul task"
+                maxLength={255}
+                {...field}
+                disabled={form.formState.isSubmitting}
+                onKeyDown={(e) => e.key === 'Enter'}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>

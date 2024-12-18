@@ -40,7 +40,7 @@ export function NavUser({ user }: { user: User }) {
                 </div>
                 <div className="grid flex-1 text-sm leading-tight text-left">
                   <span className="font-semibold truncate">{user.name}</span>
-                  <span className="text-xs truncate">{user.email}</span>
+                  <span className="text-xs truncate">{user.username}</span>
                 </div>
                 <ChevronsUpDown className="ml-auto size-4" />
               </SidebarMenuButton>
@@ -58,7 +58,7 @@ export function NavUser({ user }: { user: User }) {
                   </div>
                   <div className="grid flex-1 text-sm leading-tight text-left">
                     <span className="font-semibold truncate">{user.name}</span>
-                    <span className="text-xs truncate">{user.email}</span>
+                    <span className="text-xs truncate">{user.username}</span>
                   </div>
                 </div>
               </DropdownMenuLabel>

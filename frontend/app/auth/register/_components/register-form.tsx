@@ -22,7 +22,7 @@ import { z } from 'zod';
 const formSchema = z
   .object({
     name: z.string().min(1, { message: 'Nama harus diisi' }),
-    email: z.string().min(1, { message: 'Email harus diisi' }).email({ message: 'Email tidak valid' }),
+    username: z.string().min(1, { message: 'Username harus diisi' }),
     password: z.string().min(1, { message: 'Password harus diisi' }),
     password_confirmation: z.string(),
   })
@@ -43,7 +43,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      email: '',
+      username: '',
       password: '',
       password_confirmation: '',
     },
@@ -61,7 +61,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
         setCookie(apiConfig.apiTokenIdentifier, token);
 
         // Save user to local storage, for future use
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem(apiConfig.userProfileIdentifier, JSON.stringify(user));
 
         toast.success('Registrasi berhasil');
         router.push('/');
@@ -101,7 +101,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
                     <FormItem>
                       <FormLabel>Nama Lengkap</FormLabel>
                       <FormControl>
-                        <Input placeholder="Masukkan nama lengkap" {...field} />
+                        <Input placeholder="Masukkan nama lengkap" maxLength={255} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -109,12 +109,12 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
                 />
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Username</FormLabel>
                       <FormControl>
-                        <Input placeholder="Masukkan email" {...field} />
+                        <Input placeholder="Masukkan username" maxLength={255} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

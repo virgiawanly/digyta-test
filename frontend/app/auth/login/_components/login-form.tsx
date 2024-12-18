@@ -20,7 +20,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 const formSchema = z.object({
-  email: z.string().min(1, { message: 'Email harus diisi' }).email({ message: 'Email tidak valid' }),
+  username: z.string().min(1, { message: 'Username harus diisi' }),
   password: z.string().min(1, { message: 'Password harus diisi' }),
 });
 
@@ -31,7 +31,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -83,12 +83,12 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
               <div className="grid gap-4">
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Username</FormLabel>
                       <FormControl>
-                        <Input placeholder="Masukkan email" {...field} />
+                        <Input placeholder="Masukkan username" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

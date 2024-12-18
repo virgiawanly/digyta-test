@@ -13,5 +13,5 @@ return [
     'sorry_bad_request' => 'Sorry we could not process your request. Please try again',
     'sorry_something_went_wrong' => 'Sorry, something went wrong in our server. Please try again',
     'validation_failed' => 'Validation failed',
-    'invalid_email_or_password' => 'The email or password is incorrect',
+    'invalid_username_or_password' => 'The username or password is incorrect',
 ];
