@@ -1,19 +1,16 @@
 'use client';
 
 import { File, Github, LayoutList, SquareTerminal } from 'lucide-react';
-import * as React from 'react';
 
 import { NavMain } from '@/app/(application)/_components/nav-main';
 import { NavSecondary } from '@/app/(application)/_components/nav-secondary';
 import { NavUser } from '@/app/(application)/_components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import apiConfig from '@/config/api';
+import { User } from '@/types/users';
+import { useEffect, useState } from 'react';
 
 const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
   navMain: [
     {
       title: 'Tasks',
@@ -30,7 +27,7 @@ const data = {
   navSecondary: [
     {
       title: 'Github',
-      url: '#',
+      url: 'https://github.com/virgiawanly/digyta-test',
       icon: Github,
     },
     {
@@ -42,6 +39,17 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    if (window) {
+      const user = window.localStorage.getItem(apiConfig.userProfileIdentifier);
+      if (user) {
+        setUser(JSON.parse(user));
+      }
+    }
+  }, []);
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -65,9 +73,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
+      <SidebarFooter>{!!user && <NavUser user={user} />}</SidebarFooter>
     </Sidebar>
   );
 }

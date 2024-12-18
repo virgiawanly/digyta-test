@@ -25,10 +25,10 @@ class AuthService
      */
     public function login(array $data)
     {
-        $user = $this->userRepository->findByEmail($data['email']);
+        $user = $this->userRepository->findByUsername($data['username']);
 
         if (empty($user) || !Hash::check($data['password'], $user->password)) {
-            throw new AuthenticationException(trans("messages.invalid_email_or_password"));
+            throw new AuthenticationException(trans("messages.invalid_username_or_password"));
         }
 
         return [
@@ -48,7 +48,7 @@ class AuthService
         // Create a new user data
         $user = $this->userRepository->save([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'username' => $data['username'],
             'password' => bcrypt($data['password']),
         ]);
 

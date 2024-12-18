@@ -23,7 +23,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'username' => ['required', 'max:255', 'unique:users,username', 'alpha_dash'],
             'password' => ['required', 'min:5', 'confirmed'],
         ];
     }
@@ -36,7 +36,7 @@ class RegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.unique' => 'This email is already registered.',
+            'username.unique' => 'This username is already registered.',
         ];
     }
 }

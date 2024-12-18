@@ -39,7 +39,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
           ) : (
             <TableRow>
               <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
-                No results.
+                Tidak ada data.
               </TableCell>
             </TableRow>
           )}
