@@ -22,7 +22,12 @@ import { z } from 'zod';
 const formSchema = z
   .object({
     name: z.string().min(1, { message: 'Nama harus diisi' }),
-    username: z.string().min(1, { message: 'Username harus diisi' }),
+    username: z
+      .string()
+      .min(1, { message: 'Username harus diisi' })
+      .regex(/^[a-zA-Z0-9_]+$/, {
+        message: 'Username hanya boleh berisi huruf, angka, dan underscore',
+      }),
     password: z.string().min(1, { message: 'Password harus diisi' }),
     password_confirmation: z.string(),
   })

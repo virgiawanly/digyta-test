@@ -22,7 +22,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|username', // @note: username existance validation is done in AuthService
+            'username' => 'required', // @note: username existance validation is done in AuthService
             'password' => 'required',
         ];
     }
