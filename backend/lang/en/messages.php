@@ -6,6 +6,7 @@ return [
     'successfully_retrieved' => 'Successfully retrieved',
     'successfully_deleted' => 'Successfully deleted',
     'resource_not_found' => 'Resource not found',
+    'data_not_found' => 'Data not found',
     'named_resource_not_found' => ':name not found',
     'sorry_not_authorized' => 'Sorry, you are not authorized to perform this action',
     'sorry_forbidden' => 'Sorry, you are forbidden to access this resource',
