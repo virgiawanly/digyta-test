@@ -16,4 +16,18 @@ class TaskRepository extends BaseResourceRepository implements TaskRepositoryInt
     {
         $this->model = new Task();
     }
+
+    /**
+     * Batch update status tasks by ids.
+     *
+     * @param  array $ids
+     * @param  string $status
+     * @return bool
+     */
+    public function batchUpdateStatusByIds(array $ids, string $status): bool
+    {
+        return $this->model
+            ->whereIn('id', $ids)
+            ->update(['status' => $status,]);
+    }
 }

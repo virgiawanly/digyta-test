@@ -1,7 +1,7 @@
 import apiConfig from '@/config/api';
 import { FormattedApiError } from '@/types/errors';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { deleteCookie } from 'cookies-next';
+import { deleteCookie, getCookie } from 'cookies-next';
 
 const httpClient = axios.create({
   baseURL: apiConfig.apiUrl,
@@ -13,7 +13,7 @@ const httpClient = axios.create({
 // Intercept request to add the auth token
 httpClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem(apiConfig.apiTokenIdentifier);
+    const token = getCookie(apiConfig.apiTokenIdentifier);
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }

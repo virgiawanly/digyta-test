@@ -3,10 +3,11 @@ import { flexRender, Table } from '@tanstack/react-table';
 
 interface DataTableProps<TData> {
   table: Table<TData>;
+  isLoading?: boolean;
 }
 
 export function DataTable<TData>(props: DataTableProps<TData>) {
-  const { table } = props;
+  const { table, isLoading } = props;
 
   return (
     <div className="border rounded-md">
@@ -24,7 +25,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
             </TableRow>
           ))}
         </TableHeader>
-        <TableBody>
+        <TableBody className={`${isLoading ? 'animate-pulse' : ''}`}>
           {table.getRowCount() > 0 ? (
             table.getRowModel().rows.map((row) => (
               <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>

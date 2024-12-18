@@ -54,6 +54,18 @@ class Task extends BaseModel
     ];
 
     /**
+     * The columns that are sortable in the query.
+     *
+     * @var array<int, string>
+     */
+    protected $sortableColumns = [
+        'title',
+        'description',
+        'deadline',
+        'status',
+    ];
+
+    /**
      * Get the user that owns the task.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
