@@ -11,6 +11,7 @@ import { FormattedApiError } from '@/types/errors';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { setCookie } from 'cookies-next';
+import { LayoutList } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -77,6 +78,15 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
         <CardHeader>
+          <a className="flex items-center gap-3 pt-5 pb-8 mx-auto">
+            <div className="flex items-center justify-center rounded-lg aspect-square size-8 bg-sidebar-primary text-sidebar-primary-foreground">
+              <LayoutList className="size-4" />
+            </div>
+            <div className="grid flex-1 text-sm leading-tight text-left">
+              <span className="font-bold truncate">DIGYTA</span>
+              <span className="text-xs truncate">Task Management</span>
+            </div>
+          </a>
           <CardTitle className="text-2xl">Registrasi</CardTitle>
           <CardDescription>Lengkapi data Anda untuk membuat akun baru</CardDescription>
         </CardHeader>
@@ -143,7 +153,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
                   </Button>
                 </div>
               </div>
-              <div className="flex items-center justify-center mt-4">
+              <div className="flex items-center justify-center mt-5 mb-3">
                 <p className="text-sm text-gray-700 dark:text-gray-100">
                   Sudah punya akun?{' '}
                   <Link href="/auth/login" className="font-medium underline">

@@ -11,6 +11,7 @@ import { FormattedApiError } from '@/types/errors';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { setCookie } from 'cookies-next';
+import { LayoutList } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -47,15 +48,15 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
         setCookie(apiConfig.apiTokenIdentifier, token);
 
         // Save user to local storage, for future use
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem(apiConfig.userProfileIdentifier, JSON.stringify(user));
 
-        toast.success('Login berhasil');
+        // Redirect to home
         router.push('/');
       })
       .catch((err: FormattedApiError) => {
         toast.error(err.message ?? 'An unexpected error occurred');
-      })
-      .finally(() => {
+
+        // Only re-enable the form if it's error
         setIsLoading(false);
       });
   };
@@ -64,6 +65,15 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
         <CardHeader>
+          <a className="flex items-center gap-3 pt-5 pb-8 mx-auto">
+            <div className="flex items-center justify-center rounded-lg aspect-square size-8 bg-sidebar-primary text-sidebar-primary-foreground">
+              <LayoutList className="size-4" />
+            </div>
+            <div className="grid flex-1 text-sm leading-tight text-left">
+              <span className="font-bold truncate">DIGYTA</span>
+              <span className="text-xs truncate">Task Management</span>
+            </div>
+          </a>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>Silahkan masukan username dan password Anda</CardDescription>
         </CardHeader>
@@ -104,7 +114,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
                   </Button>
                 </div>
               </div>
-              <div className="flex items-center justify-center mt-4">
+              <div className="flex items-center justify-center mt-5 mb-3">
                 <p className="text-sm text-gray-700 dark:text-gray-100">
                   Belum punya akun?{' '}
                   <Link href="/auth/register" className="font-medium underline">
