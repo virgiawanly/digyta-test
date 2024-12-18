@@ -45,9 +45,9 @@ abstract class BaseResourceController extends Controller
             }
         }
 
-        $result = $request->has('size') && $request->size > 0
-            ? $this->service->list($request->all(), $relations)
-            : $this->service->paginatedList($request->all(), $relations);
+        $result = $request->has('size') && intval($request->size) > 0
+            ? $this->service->paginatedList($request->all(), $relations)
+            : $this->service->list($request->all(), $relations);
 
         return ResponseHelper::data($result);
     }

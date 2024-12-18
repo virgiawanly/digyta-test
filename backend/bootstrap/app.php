@@ -9,6 +9,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -29,7 +30,7 @@ return Application::configure(basePath: dirname(__DIR__))
                     return ResponseHelper::forbidden($e->getMessage());
                 } else if ($e instanceof AuthenticationException) {
                     return ResponseHelper::unauthenticated($e->getMessage());
-                } else if ($e instanceof ModelNotFoundException) {
+                } else if ($e instanceof ModelNotFoundException || $e instanceof NotFoundHttpException) {
                     return ResponseHelper::notFound($e->getMessage());
                 } else {
                     return ResponseHelper::internalServerError($e->getMessage());
